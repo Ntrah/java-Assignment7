@@ -34,7 +34,13 @@ public class Assignment7 {
         printOutput(math,reading,totalScore,n);
         scan.close();
     }
-    
+    /**
+     * 
+     * @param array1  an integer array for holding the first column in the data file
+     * @param array2 an integer array for holding the second column in the data file
+     * @param k   an integer representing the number of lines of data to read in
+     * @throws FileNotFoundException 
+     */
     public static void readSatscores(int []array1,int[]array2,int k) throws FileNotFoundException{
         File infile=new File("input.txt");
         Scanner sc=new Scanner(infile);
@@ -44,19 +50,33 @@ public class Assignment7 {
         }
         sc.close();
     }
+    
+    /**
+     * 
+     * @param mathScores  an integer array holding the math scores
+     * @param readingScores an integer array holding the reading scores
+     * @param totalScores  an integer array that will get filled with the sum of corresponding
+elements of array1 and array2
+     * @param k an integer representing the number of elements in the arrays
+     */
     public static void sumScores(int[]mathScores, int[]readingScores,int[]totalScores,int k){
         for(int i=0;i< k;i++){
             totalScores[i]=mathScores[i]+readingScores[i];
         }
         
     
-    }
+    }/**
+     * 
+     * @param mathScores  an integer array holding the math scores
+     * @param readingScores an integer array holding the reading scores
+     * @param totalScores an integer array holding each student’s total score
+     * @param k an integer representing the number of elements in the arrays
+     * @throws FileNotFoundException 
+     */
     public static void printOutput(int[]mathScores, int[]readingScores,int[]totalScores,int k) throws FileNotFoundException{
          PrintWriter outfile = new PrintWriter("output.txt");
          outfile.printf("%s %10s  %10s  %20s\n","Math","Reading", "Total", "MaxArea");
          for (int i=0;i<k;i++){
-        // outfile.println(mathScores[i] + " " + readingScores[i] + " " + totalScores[i] + " " + (mathScores[i] > readingScores[i] ? mathScores[i] : readingScores[i])  );
-         //outfile.printf("%d %10d  %10d  %10s\n",mathScores[i],readingScores[i], totalScores[i], (mathScores[i] > readingScores[i] ? "Math" : "reading")  );
          outfile.printf("%d  %10d  %10d  %20s\n",mathScores[i],readingScores[i], totalScores[i], mathScores[i] == readingScores[i]? "Math/Reading" : (mathScores[i] > readingScores[i] ? "Math" : "Reading")  );
          }
          outfile.close();
